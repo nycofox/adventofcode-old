@@ -17,8 +17,6 @@ foreach ($input as $row) {
 natsort($elves);
 
 $sorted = array_slice($elves, -3, 3);
-//$sorted = array_slice(array_reverse($elves), 0, 3);
 
 print_r('PART ONE: The elf with the most calories has a total of ' . max($elves) . PHP_EOL);
-
 print_r('PART TWO: The three elves with the most calories have a total of ' . array_sum($sorted) . ' calories' . PHP_EOL);
