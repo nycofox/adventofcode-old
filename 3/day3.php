@@ -14,9 +14,7 @@ foreach ($input as $rucksack) {
     $sum_1 += lettervalue($common);
 }
 
-$groups = array_chunk($input, 3);
-
-foreach ($groups as $group) {
+foreach (array_chunk($input, 3) as $group) {
     $common = implode(array_unique(array_intersect(str_split($group[0]), str_split($group[1]), str_split($group[2]))));
 
     $sum_2 += lettervalue($common);
