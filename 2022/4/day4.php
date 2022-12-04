@@ -18,9 +18,7 @@ foreach ($input as $pair) {
         $fully_overlaps++;
     }
 
-    if (
-        !($elf1[1] < $elf2[0]) && !($elf2[1] < $elf1[0])
-    ) {
+    if (!($elf1[1] < $elf2[0]) && !($elf2[1] < $elf1[0])) {
         $partial_overlaps++;
     }
 }
