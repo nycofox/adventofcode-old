@@ -43,32 +43,22 @@ foreach ($stacks as $current) {
 }
 
 foreach ($instructions as $instruction) {
-    move($instruction['amount'], $instruction['from'], $instruction['to']);
-}
-
-function move($amount, $from, $to)
-{
-    global $stack_part1;
-    global $stack_part2;
-
-    $i = 0;
-
     $crates = [];
 
-    while ($i < $amount) {
-        array_unshift($stack_part1[$to], $stack_part1[$from][0]);
-        array_unshift($crates, $stack_part2[$from][0]);
-        array_shift($stack_part1[$from]);
-        array_shift($stack_part2[$from]);
+    $i = 0;
+    while ($i < $instruction['amount']) {
+        array_unshift($stack_part1[$instruction['to']], $stack_part1[$instruction['from']][0]);
+        array_unshift($crates, $stack_part2[$instruction['from']][0]);
+        array_shift($stack_part1[$instruction['from']]);
+        array_shift($stack_part2[$instruction['from']]);
         $i++;
     }
 
     $i = 0;
-    while ($i < $amount) {
-        array_unshift($stack_part2[$to], $crates[$i]);
+    while ($i < $instruction['amount']) {
+        array_unshift($stack_part2[$instruction['to']], $crates[$i]);
         $i++;
     }
-
 }
 
 function getInstruction($string)
@@ -80,6 +70,7 @@ function getInstruction($string)
         'from' => $numbers[3],
         'to' => $numbers[5],
     ];
+
 }
 
 function createStackLine($input, $number_of_stacks)
@@ -97,7 +88,6 @@ function createStackLine($input, $number_of_stacks)
 
 }
 
-
 print_r('Top of each stack (Part One): ');
 
 $i = 1;
@@ -113,4 +103,3 @@ while ($i <= $number_of_stacks) {
     print_r($stack_part2[$i][0]);
     $i++;
 }
-
